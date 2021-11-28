@@ -6,5 +6,8 @@
 * and pseudo encryption
 * */
 
+package homework6;
+
 public class Main {
+
 }
