@@ -89,7 +89,7 @@ public class FileWorker {
     }
   }
 
-  public String convertToHex() throws IOException {
+  public String convertToHex() {
     Scanner scanner = new Scanner(System.in);
     System.out.println("You are in " + this.directoryName + ". Enter the file to convert to hex.");
     String fileName = scanner.next();
@@ -112,6 +112,8 @@ public class FileWorker {
         offset++;
         hex.append(Integer.toHexString(value));
       }
+    } catch (IOException ioException) {
+      ioException.printStackTrace();
     }
     return hex.toString();
   }
