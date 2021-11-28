@@ -109,8 +109,11 @@ public class FileWorker {
 
     try (InputStream inputStream = Files.newInputStream(path)) {
       while ((value = inputStream.read()) != -1) {
-        offset++;
-        hex.append(Integer.toHexString(value));
+        for (int i=0;i<24;i++) {
+          offset++;
+          hex.append(Integer.toHexString(value)).append(" ");
+        }
+        hex.append("\n");
       }
     } catch (IOException ioException) {
       ioException.printStackTrace();
