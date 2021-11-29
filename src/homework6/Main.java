@@ -47,7 +47,7 @@ public class Main {
           }
           case 1 -> {
             System.out.println("1 entered. Please choose directory");
-            fileSystem.pickDirectory("C:/" + scanner.next());
+            fileSystem.pickDirectory(scanner.next());
           }
           case 2 -> {
             System.out.println("2 entered. Listing current directory");

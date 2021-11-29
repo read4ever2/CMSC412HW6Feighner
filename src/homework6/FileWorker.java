@@ -109,11 +109,12 @@ public class FileWorker {
 
     try (InputStream inputStream = Files.newInputStream(path)) {
       while ((value = inputStream.read()) != -1) {
-        for (int i=0;i<24;i++) {
-          offset++;
-          hex.append(Integer.toHexString(value)).append(" ");
+        offset++;
+        hex.append(Integer.toHexString(value)).append(" ");
+
+        if ((offset % 24) == 0) {
+          hex.append("\n");
         }
-        hex.append("\n");
       }
     } catch (IOException ioException) {
       ioException.printStackTrace();
@@ -131,7 +132,7 @@ public class FileWorker {
     pseudoCrypto.EncryptXOR(path, directoryName, fileName, true);
   }
 
-  public void XORDecrypt(){
+  public void XORDecrypt() {
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("You are in " + this.directoryName + ". Please enter the file to decrypt");
