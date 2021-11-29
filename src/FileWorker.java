@@ -17,7 +17,6 @@ import java.util.Scanner;
 public class FileWorker {
   private String directoryName;
   private Path path;
-  private File file;
 
   public void listFileLevel() {
     try {
@@ -34,13 +33,13 @@ public class FileWorker {
 
       Files.walkFileTree(file.toPath(), Collections.emptySet(), Integer.MAX_VALUE, new SimpleFileVisitor<>() {
         @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
+        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
           System.out.println(file);
           return FileVisitResult.CONTINUE;
         }
 
         @Override
-        public FileVisitResult postVisitDirectory(Path dir, IOException exc) throws IOException {
+        public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
           System.out.println(directoryName);
           return FileVisitResult.CONTINUE;
         }
@@ -97,11 +96,8 @@ public class FileWorker {
       throw new IllegalArgumentException("File not found! " + path);
     }
     System.out.println(path.toString());
-    StringBuilder result = new StringBuilder();
     StringBuilder hex = new StringBuilder();
-    StringBuilder input = new StringBuilder();
 
-    int count = 0;
     int value;
     int offset = 0;
 
@@ -127,7 +123,7 @@ public class FileWorker {
     String fileName = scanner.next();
 
     PseudoCrypto pseudoCrypto = new PseudoCrypto();
-    pseudoCrypto.EncryptXOR(path, directoryName, fileName, true);
+    pseudoCrypto.EncryptXOR(directoryName, fileName, true);
   }
 
   public void XORDecrypt() {
@@ -137,6 +133,6 @@ public class FileWorker {
     String fileName = scanner.next();
 
     PseudoCrypto pseudoCrypto = new PseudoCrypto();
-    pseudoCrypto.EncryptXOR(path, directoryName, fileName, false);
+    pseudoCrypto.EncryptXOR(directoryName, fileName, false);
   }
 }

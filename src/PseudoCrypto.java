@@ -22,7 +22,7 @@ public class PseudoCrypto {
       inputStream = new FileInputStream(inputFile);
       outputStream = new BufferedOutputStream(new FileOutputStream(outputFile));
 
-      int workingByte = -1;
+      int workingByte;
       long counter = 0;
 
       while ((workingByte = inputStream.read()) != -1) {
@@ -44,11 +44,11 @@ public class PseudoCrypto {
 
 
 
-  public void EncryptXOR(Path filepath, String directory, String fileName, boolean encrypt) {
+  public void EncryptXOR(String directory, String fileName, boolean encrypt) {
 
     Scanner scanner = new Scanner(System.in);
 
-    filepath = Paths.get(directory + "/" + fileName);
+    Path filepath = Paths.get(directory + "/" + fileName);
 
     Path resultPath = Paths.get(directory + "/enc_" + fileName);
 
