@@ -24,18 +24,17 @@ public class Main {
     Scanner scanner = new Scanner(System.in);
 
     while (flag) {
-      System.out.println("""
-          *****************************************
-                    
-          0 - Exit
-          1 – Select directory
-          2 – List directory content (first level)
-          3 – List directory content (all levels)
-          4 – Delete file
-          5 – Display file (hexadecimal view)
-          6 – Encrypt file (XOR with password)
-          7 – Decrypt file (XOR with password)
-          Select Option:""");
+      System.out.println("*****************************************\n" +
+                         "\n" +
+                         "0 - Exit\n" +
+                         "1 – Select directory\n" +
+                         "2 – List directory content (first level)\n" +
+                         "3 – List directory content (all levels)\n" +
+                         "4 – Delete file\n" +
+                         "5 – Display file (hexadecimal view)\n" +
+                         "6 – Encrypt file (XOR with password)\n" +
+                         "7 – Decrypt file (XOR with password)\n" +
+                         "Select Option:");
 
       try {
         menuChoice = Integer.parseInt(scanner.next());
