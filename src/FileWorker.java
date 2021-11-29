@@ -1,5 +1,3 @@
-package homework6;
-
 /*
  * Filename: FileWorker.java
  * Author: Will Feighner

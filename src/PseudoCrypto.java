@@ -1,5 +1,3 @@
-package homework6;
-
 /*
  * Filename: PseudoCrypto.java
  * Author: Will Feighner

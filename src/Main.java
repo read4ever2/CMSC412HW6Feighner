@@ -6,8 +6,6 @@
  * and pseudo encryption
  * */
 
-package homework6;
-
 import java.util.Scanner;
 
 public class Main {
