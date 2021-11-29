@@ -40,39 +40,41 @@ public class Main {
         menuChoice = Integer.parseInt(scanner.next());
 
         switch (menuChoice) {
-          case 0 -> {
+          case 0:
             System.out.println("Goodbye");
             flag = false;
-          }
-          case 1 -> {
+            break;
+          case 1:
             System.out.println("1 entered. Please choose directory");
             fileSystem.pickDirectory(scanner.next());
-          }
-          case 2 -> {
+            break;
+          case 2:
             System.out.println("2 entered. Listing current directory");
             fileSystem.listFileLevel();
-          }
-          case 3 -> {
+            break;
+          case 3:
             System.out.println("3 entered. Listing all directories");
             fileSystem.listAllFileLevels();
-          }
-          case 4 -> {
+            break;
+          case 4:
             System.out.println("4 entered. Delete File");
             fileSystem.deleteFile();
-          }
-          case 5 -> {
+            break;
+          case 5:
             System.out.println("5 entered. Display in Hex");
             System.out.println(fileSystem.convertToHex());
-          }
-          case 6 -> {
+            break;
+          case 6:
             System.out.println("6 entered. Encryption");
             fileSystem.XOREncrypt();
-          }
-          case 7->{
+            break;
+          case 7:
             System.out.println("7 entered. Decryption");
             fileSystem.XORDecrypt();
-          }
-          default -> System.out.println("Invalid selection. Please select 0-7");
+            break;
+          default:
+            System.out.println("Invalid selection. Please select 0-7");
+            break;
         }
       } catch (NumberFormatException e) {
         System.out.println("Please enter a number between 0-7");
