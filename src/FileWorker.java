@@ -19,6 +19,10 @@ public class FileWorker {
   private Path path;
 
   public void listFileLevel() {
+    if (directoryName == null) {
+      System.out.println("Please Select a directory first");
+      return;
+    }
     try {
       Files.list(new File(directoryName).toPath()).limit(20).forEach(System.out::println);
     } catch (IOException ioException) {
@@ -28,6 +32,10 @@ public class FileWorker {
   }
 
   public void listAllFileLevels() {
+    if (directoryName == null) {
+      System.out.println("Please Select a directory first");
+      return;
+    }
     try {
       File file = new File(directoryName);
 
@@ -51,6 +59,10 @@ public class FileWorker {
   }
 
   public void deleteFile() {
+    if (directoryName == null) {
+      System.out.println("Please Select a directory first");
+      return;
+    }
     Scanner scanner = new Scanner(System.in);
     System.out.println("You are in " + this.directoryName + ". Please enter the file that you want to delete.");
     String fileName = scanner.next();
@@ -87,36 +99,51 @@ public class FileWorker {
   }
 
   public String convertToHex() {
+    if (directoryName == null) {
+      return "Please Select a directory first";
+    }
     Scanner scanner = new Scanner(System.in);
     System.out.println("You are in " + this.directoryName + ". Enter the file to convert to hex.");
     String fileName = scanner.next();
     this.path = Paths.get(directoryName + "/" + fileName);
 
-    if (Files.notExists(path)) {
-      throw new IllegalArgumentException("File not found! " + path);
-    }
-    System.out.println(path.toString());
     StringBuilder hex = new StringBuilder();
 
-    int value;
-    int offset = 0;
+    try {
+      InputStream inputStream = Files.newInputStream(path);
+      System.out.println(path.toString());
 
-    try (InputStream inputStream = Files.newInputStream(path)) {
-      while ((value = inputStream.read()) != -1) {
-        offset++;
-        hex.append(Integer.toHexString(value)).append(" ");
+      int value;
+      int offset = 0;
+      try {
+        if (!Files.notExists(path)) {
+          while ((value = inputStream.read()) != -1) {
+            offset++;
+            hex.append(Integer.toHexString(value)).append(" ");
 
-        if ((offset % 24) == 0) {
-          hex.append("\n");
+            if ((offset % 24) == 0) {
+              hex.append("\n");
+            }
+          }
+        } else {
+          System.out.println("File does not exist");
         }
+      } catch (IllegalArgumentException | NoSuchFileException illegalArgumentException) {
+        System.out.println("File does not exist");
+      } finally {
+        inputStream.close();
       }
     } catch (IOException ioException) {
-      ioException.printStackTrace();
+      System.out.println("File does not exist");
     }
     return hex.toString();
   }
 
   public void XOREncrypt() {
+    if (directoryName == null) {
+      System.out.println("Please Select a directory first");
+      return;
+    }
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("You are in " + this.directoryName + ". Please enter the file to encrypt");
@@ -127,6 +154,10 @@ public class FileWorker {
   }
 
   public void XORDecrypt() {
+    if (directoryName == null) {
+      System.out.println("Please Select a directory first");
+      return;
+    }
     Scanner scanner = new Scanner(System.in);
 
     System.out.println("You are in " + this.directoryName + ". Please enter the file to decrypt");
